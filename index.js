@@ -48,6 +48,7 @@ for (let operator of operators) {
             a = c;
             b = "";
             c = ""; 
+            display.innerText = a;
             operation = operator.innerText;
             return;       
         };
@@ -85,4 +86,7 @@ clear.addEventListener("click", () => {
     c = "";
 });
 
-deleteLast.addEventListener("click", () => display.innerText = display.innerText.slice(0, -1))
+deleteLast.addEventListener("click", () => {
+    if (operatorClicked == true) b = b.slice(0, -1);
+    display.innerText = display.innerText.slice(0, -1);
+});

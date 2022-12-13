@@ -4,6 +4,8 @@ const operators = document.querySelectorAll(".operator");
 const equalSign = document.querySelector(".equalSign");
 const clear = document.querySelector(".clear");
 const deleteLast = document.querySelector(".delete");
+const decimalButton = document.querySelector(".decimal");
+
 let a = "";
 let b = "";
 let c = "";
@@ -11,7 +13,7 @@ let operatorClicked = false;
 let operation = "";
 
 function add() {
-    c = parseInt(a) + parseInt(b);
+    c = parseFloat(a) + parseFloat(b);
 };
 
 function subtract() {
@@ -70,6 +72,7 @@ equalSign.addEventListener("click", () => {
     else if (operation == "-") subtract();
     else if (operation == "*") multiply();
     else if (operation == "/") divide();
+    c = parseFloat(c.toFixed(2))
     a = c;
     b = "";
     display.innerText = c;
@@ -89,4 +92,10 @@ clear.addEventListener("click", () => {
 deleteLast.addEventListener("click", () => {
     if (operatorClicked == true) b = b.slice(0, -1);
     display.innerText = display.innerText.slice(0, -1);
+});
+
+decimalButton.addEventListener("click", () => {
+    if (display.innerText.includes(".") == true) return;
+    display.innerText += ".";
+    if (display.innerText.includes(".") == true && operatorClicked == true) b = display.innerText;
 });
